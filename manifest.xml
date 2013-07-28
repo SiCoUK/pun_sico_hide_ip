@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE extension SYSTEM "ext-1.0.dtd">
+
+<!--
+/**
+ * SiCo IP Address unless user is an admin
+ *
+ * @copyright Copyright (C) 2011 Simon Corless
+ * @package sico_hide_ip
+ */
+-->
+<extension engine="1.0">
+    <id>sico_hide_ip</id>
+    <title>SiCo Hide IP</title>
+    <version>1.0.0</version>
+    <description>Hide the users ip address in post view unless the viewer has admin rights.</description>
+    <author>Simon Corless</author>
+    <minversion>1.3.6</minversion>
+    <maxtestedon>1.3.6</maxtestedon>
+
+    <install><![CDATA[
+
+    ]]></install>
+
+    <uninstall><![CDATA[
+
+    ]]></uninstall>
+
+    <hooks>
+        <!--
+        /**
+         * Disable IP display for admin and mods
+         */ -->
+        <hook id="vt_row_pre_display"><![CDATA[
+
+            if (isset($forum_page['author_info']['ip']) && $forum_user['g_id'] != FORUM_ADMIN) {
+                unset($forum_page['author_info']['ip']);
+            }
+
+        ]]></hook>
+    </hooks>
+
+</extension>
